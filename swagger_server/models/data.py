@@ -15,11 +15,13 @@ class Data(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: int=None, data: float=None, time: datetime=None):  # noqa: E501
+    def __init__(self, id: int=None, mac: str=None, data: float=None, time: datetime=None):  # noqa: E501
         """Data - a model defined in Swagger
 
         :param id: The id of this Data.  # noqa: E501
         :type id: int
+        :param mac: The mac of this Data.  # noqa: E501
+        :type mac: str
         :param data: The data of this Data.  # noqa: E501
         :type data: float
         :param time: The time of this Data.  # noqa: E501
@@ -27,17 +29,20 @@ class Data(Model):
         """
         self.swagger_types = {
             'id': int,
+            'mac': str,
             'data': float,
             'time': datetime
         }
 
         self.attribute_map = {
             'id': 'id',
+            'mac': 'mac',
             'data': 'data',
             'time': 'time'
         }
 
         self._id = id
+        self._mac = mac
         self._data = data
         self._time = time
 
@@ -74,6 +79,29 @@ class Data(Model):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
+
+    @property
+    def mac(self) -> str:
+        """Gets the mac of this Data.
+
+
+        :return: The mac of this Data.
+        :rtype: str
+        """
+        return self._mac
+
+    @mac.setter
+    def mac(self, mac: str):
+        """Sets the mac of this Data.
+
+
+        :param mac: The mac of this Data.
+        :type mac: str
+        """
+        if mac is None:
+            raise ValueError("Invalid value for `mac`, must not be `None`")  # noqa: E501
+
+        self._mac = mac
 
     @property
     def data(self) -> float:

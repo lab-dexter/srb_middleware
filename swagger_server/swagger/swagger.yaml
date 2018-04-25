@@ -72,11 +72,15 @@ definitions:
     required:
     - "data"
     - "id"
+    - "mac"
     - "time"
     properties:
       id:
         type: "integer"
         format: "int64"
+      mac:
+        type: "string"
+        format: "mac"
       data:
         type: "number"
         format: "double"
@@ -84,8 +88,9 @@ definitions:
         type: "string"
         format: "date-time"
     example:
-      data: 6.6500000000000003552713678800500929355621337890625
       id: 0
+      mac: "00:AA:BB:CC:DD:DD"
+      data: 6.6500000000000003552713678800500929355621337890625
       time: "2000-01-23T04:56:07.000+00:00"
     xml:
       name: "Data"
