@@ -34,11 +34,12 @@ def add_data(body=None):  # noqa: E501
                             passwd=passwd,
                             db=dbname)
 
-        logger = logging.basicConfig(level=logging.DEBUG)
+        
         cur = db.cursor()
         cur.execute("SELECT * FROM `sensor_data`")
         for row in cur.fetchall():
-            logger.debug("{} {} {}".format(row[0], row[1], row[2]))
+            logger = logging.basicConfig(level=logging.DEBUG)
+            logger.debug('{} {} {}'.format(row[0], row[1], row[2]))
             print("{} {} {}".format(row[0], row[1], row[2]))
 
         return body
