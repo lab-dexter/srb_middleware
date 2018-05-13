@@ -19,8 +19,8 @@ def add_data(body=None):  # noqa: E501
 
     :rtype: Data
     """
-    logger = logging.basicConfig(level=logging.DEBUG)
     
+
     if connexion.request.is_json:
         body = Data.from_dict(connexion.request.get_json())  # noqa: E501
 
@@ -34,6 +34,7 @@ def add_data(body=None):  # noqa: E501
                             passwd=passwd,
                             db=dbname)
 
+        logger = logging.basicConfig(level=logging.DEBUG)
         cur = db.cursor()
         cur.execute("SELECT * FROM `sensor_data`")
         for row in cur.fetchall():
