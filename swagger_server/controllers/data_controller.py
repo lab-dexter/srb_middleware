@@ -7,7 +7,7 @@ import logging
 from swagger_server.models.data import Data  # noqa: E501
 from swagger_server import util
 
-logger = logging.basicConfig(level=logging.DEBUG)
+
 
 def add_data(body=None):  # noqa: E501
     """Add data sample
@@ -19,6 +19,8 @@ def add_data(body=None):  # noqa: E501
 
     :rtype: Data
     """
+    logger = logging.basicConfig(level=logging.DEBUG)
+    
     if connexion.request.is_json:
         body = Data.from_dict(connexion.request.get_json())  # noqa: E501
 
