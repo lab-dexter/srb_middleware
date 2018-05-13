@@ -39,7 +39,9 @@ def add_data(body=None):  # noqa: E501
         cur.execute("SELECT * FROM `sensor_data`")
         for row in cur.fetchall():
             # logger = logging.basicConfig(level=logging.DEBUG)
-            app.logger.debug('{} {} {}'.format(row[0], row[1], row[2]))
+            logger = logging.getLogger(__name__)
+            logger.level=logging.DEBUG
+            logger.debug('{} {} {}'.format(row[0], row[1], row[2]))
             print("{} {} {}".format(row[0], row[1], row[2]))
 
         return body
