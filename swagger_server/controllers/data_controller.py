@@ -19,22 +19,20 @@ def add_data(body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         body = Data.from_dict(connexion.request.get_json())  # noqa: E501
+
+        user = os.environ["MYSQL_USER"]
+        passwd = os.environ["MYSQL_PASSWORD"]
+        dbhost = os.environ["MYSQL_SERVICE_HOST"]
+        dbname = os.environ["MYSQL_DATABASE"]
+
+        db = MySQLdb.connect(host=dbhost,
+                            user=user,
+                            passwd=passwd,
+                            db=dbname)
+
+        cur = db.cursor()
+        cur.execute("SELECT * FROM `sensor_data`")
+        for row in cur.fetchall():
+            print("{} {} {}".format(row[0], row[1], row[2]))
+
         return body
-
-    user = os.environ["MYSQL_USER"]
-    passwd = os.environ["MYSQL_PASSWORD"]
-    dbhost = os.environ["MYSQL_SERVICE_HOST"]
-    dbname = os.environ["MYSQL_DATABASE"]
-
-    db = MySQLdb.connect(host=dbhost,
-                        user=user,
-                        passwd=passwd,
-                        db=dbname)
-
-
-    cur = db.cursor()
-
-    cur.execute("SELECT * FROM `sensor_data`")
-    
-    for row in cur.fetchall():
-        print("{} {} {}".format(row[0], row[1], row[2]))
