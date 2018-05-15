@@ -16,5 +16,5 @@ def add_ra_data(body=None):  # noqa: E501
     :rtype: RAData
     """
     if connexion.request.is_json:
-        body = Data.from_dict(connexion.request.get_json())  # noqa: E501
+        body = RAData.from_dict(connexion.request.get_json())  # noqa: E501
         return body
