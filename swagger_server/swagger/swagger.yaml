@@ -66,6 +66,34 @@ paths:
         405:
           description: "Invalid input"
       x-swagger-router-controller: "swagger_server.controllers.data_controller"
+  /ra_data:
+    post:
+      tags:
+      - "ra_data"
+      summary: "Add data sample for room availability"
+      description: "Add data sample for room availability"
+      operationId: "add_ra_data"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Add data sample for room availability"
+        required: false
+        schema:
+          $ref: "#/definitions/RA_data"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/RA_data"
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.ra_data_controller"
 definitions:
   Data:
     type: "object"
@@ -94,3 +122,25 @@ definitions:
       time: "2000-01-23T04:56:07.000+00:00"
     xml:
       name: "Data"
+  RA_data:
+    type: "object"
+    required:
+    - "data"
+    - "mac"
+    - "time"
+    properties:
+      mac:
+        type: "string"
+        format: "mac"
+      data:
+        type: "number"
+        format: "double"
+      time:
+        type: "string"
+        format: "date-time"
+    example:
+      mac: "00:AA:BB:CC:DD:DD"
+      data: 0
+      time: "2000-01-23T04:56:07.000+00:00"
+    xml:
+      name: "RA_data"
