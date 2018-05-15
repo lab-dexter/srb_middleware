@@ -30,12 +30,16 @@ def add_data(body=None):  # noqa: E501
                             user=user,
                             passwd=passwd,
                             db=dbname)
-                            
+
         logger = logging.getLogger(__name__)
         logger.level = logging.DEBUG
         
         cur = db.cursor()
-        cur.execute("SELECT * FROM `sensor_data`")
+        macid = "{}_{}".format(body['mac'], body['id'])
+        distance = body['data']
+        timestamp = body['time']
+        cur.execute("INSERT INTO `sensor_data` (`macid`, `distance`, `timestamp`) VALUES (`{}`, `{}`, `{}`)".format(macid, distance, timestamp))
+        cur.commit()
         for row in cur.fetchall():
             logger.debug('{} {} {}'.format(row[0], row[1], row[2]))
 
