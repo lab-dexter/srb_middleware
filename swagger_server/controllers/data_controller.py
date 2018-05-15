@@ -33,7 +33,8 @@ def add_data(body=None):  # noqa: E501
 
         logger = logging.getLogger(__name__)
         logger.level = logging.DEBUG
-        
+        logger.debug("BODY: {}".format(body))
+
         cur = db.cursor()
         macid = "{}_{}".format(body['mac'], body['id'])
         distance = body['data']
